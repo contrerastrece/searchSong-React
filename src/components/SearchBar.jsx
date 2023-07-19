@@ -6,6 +6,7 @@ import useFetch from "./useFetch";
 import ChartTracks from "./ChartTracks";
 import Loader from "./Loader";
 import ControlBar from "./ControlBar"; // Importamos el componente Footer
+import search from '../assets/icons/search.svg'
 
 
 const SearchBar = () => {
@@ -52,20 +53,21 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="w-full">
-      <div className="m-[1rem]">
-        <form action="" onSubmit={(e) => e.preventDefault()}>
+    <div className="w-full max-w-[1200px] min-w-[768px]">
+      <div className="m-[2rem]" >
+        <form action="" onSubmit={(e) => e.preventDefault()} className="relative">
           <input
             type="text"
             placeholder="search song..."
-            className="text-stone-500 text-lg font-normal"
+            className="text-[#828282] text-lg font-normal w-full outline pl-4 outline-[1px] rounded-[1rem] h-[2rem]"
             value={query}
             onChange={handleChange}
           />
+          <img src={search} alt="search-icon" className="absolute w-[1rem] right-[1rem] top-[0] translate-y-1/2" />
         </form>
       </div>
 
-      <div className="m-[1rem]">
+      <div className="m-[2rem]">
         {/* <DetailMusic results={ data.data || dataTracks.data} /> */}
         <DetailMusic
           results={data && data.data ? data.data : dataTracks.data}

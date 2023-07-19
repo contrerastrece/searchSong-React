@@ -1,4 +1,5 @@
-import play from '../assets/icons/pause.svg';
+import pause from '../assets/icons/pause.svg';
+import play from '../assets/icons/play-solid.svg';
 import dots from '../assets/icons/dots.svg';
 
 
@@ -10,7 +11,7 @@ const Music = ({data,onPlay}) => {
   }
 
   return (
-    <div className="w-40 h-52 relative" onClick={handleClick}>
+    <div className="w-40 h-52 relative cursor-pointer" onClick={handleClick}>
        <img
         className="w-40 h-40"
         src={data.album.cover_medium}
@@ -25,9 +26,10 @@ const Music = ({data,onPlay}) => {
       <div className="w-4 h-1 left-[152px] top-[8px] absolute origin-top-left rotate-90">
         <img src={dots} alt="" />
       </div>
-      <div className="left-[64px] top-[62px] absolute text-white text-4xl font-black">
-        <img src={play} alt="icon-play" />
+      <div className="w-40 h-40 absolute top-0  text-4xl font-black hover:scale-150">
+        <img src={play} alt="icon-play" className='absolute w-8 h-8 top-[50%] translate-x-[50%] translate-y-[-50%] right-[50%]'/>
       </div>
+     
     </div>
   );
 };

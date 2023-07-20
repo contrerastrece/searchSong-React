@@ -3,15 +3,15 @@ import Result from "./Result";
 import dataTracks from "../assets/json/dataTracks.json";
 import DetailMusic from "./DetailMusic";
 import useFetch from "./useFetch";
-import ChartTracks from "./ChartTracks";
+// import ChartTracks from "./ChartTracks";
 import Loader from "./Loader";
-import ControlBar from "./ControlBar"; // Importamos el componente Footer
-import search from '../assets/icons/search.svg'
-
+import ControlBar from "./ControlBar";
+import search from "../assets/icons/search.svg";
 
 const SearchBar = () => {
-
   const [query, setQuery] = useState("");
+  const [currentSong, setCurrentSong] = useState(null); // Estado para la canción actualmente seleccionada
+
   let url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`;
   const options = {
     method: "GET",
@@ -21,41 +21,28 @@ const SearchBar = () => {
     },
   };
 
-  
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
 
   const { data, loading, error } = useFetch(url, options);
-  
-  const [currentSong, setCurrentSong] = useState(null); // Estado para almacenar la canción actual
-  const [currentSongData, setCurrentSongData] = useState(null);
 
-  // console.log(dataTracks, "dataTracks");
-  // console.log(data, "data");
-
-  // Función para reproducir la canción
   const handlePlaySong = (songData) => {
-    const { preview } = songData;
-    const audio = new Audio(preview);
-    audio.play();
-
     if (currentSong && currentSong.id === songData.id) {
       setCurrentSong(null); // Si la canción actual es la misma que la que se hizo clic, detener la reproducción
-      setCurrentSongData(null); // 
     } else {
-      if (currentSong) {
-      currentSong.pause(); // Detener la reproducción de la canción anterior
-      }
-      setCurrentSong(audio); // Almacenar la referencia al objeto Audio de la nueva canción
-      setCurrentSongData(songData);
-    } 
+      setCurrentSong(songData); // Si se hizo clic en una nueva canción, iniciar la reproducción
+    }
   };
 
   return (
     <div className="w-full max-w-[1200px] min-w-[768px]">
-      <div className="m-[2rem]" >
-        <form action="" onSubmit={(e) => e.preventDefault()} className="relative">
+      <div className="m-[2rem]">
+        <form
+          action=""
+          onSubmit={(e) => e.preventDefault()}
+          className="relative"
+        >
           <input
             type="text"
             placeholder="search song..."
@@ -63,34 +50,37 @@ const SearchBar = () => {
             value={query}
             onChange={handleChange}
           />
-          <img src={search} alt="search-icon" className="absolute w-[1rem] right-[1rem] top-[0] translate-y-1/2" />
+          <img
+            src={search}
+            alt="search-icon"
+            className="absolute w-[1rem] right-[1rem] top-[0] translate-y-1/2"
+          />
         </form>
       </div>
 
       <div className="m-[2rem]">
-        {/* <DetailMusic results={ data.data || dataTracks.data} /> */}
         <DetailMusic
-          results={data && data.data ? data.data : dataTracks.data}
+          results={data && data.data ? data.data : dataTracks.tracks.data}
         />
 
-        <h2>Resultados</h2>
-        {/* Muestra el componente Loader mientras se realiza la búsqueda */}
+        <h2>Ranking Top</h2>
         {loading ? (
           <Loader />
-        ) : (
-          <>
-            {/* Muestra los resultados de la búsqueda o ChartTracks según corresponda */}
+          ) : (
+            <>
             {error && <div>Error: {error.message}</div>}
-            {query !== "" && data !== null ? (
-              <Result results={data.data} onPlay={handlePlaySong} />
+            <Result results={data.data || dataTracks.tracks.data} handlePlaySong={handlePlaySong} />
+            {/* {query !== "" && data !== null ? (
+            <Result results={data.data || dataTracks.data} handlePlaySong={handlePlaySong} />
             ) : (
               <ChartTracks dataTracks={dataTracks.data} />
-            )}
+            )} */}
           </>
         )}
       </div>
-      {/* Mostrar el footer solo si hay una canción en reproducción */}
-      {currentSong && <ControlBar currentSongData={currentSongData} />}
+
+      {/* Pasamos la información de la canción actual al componente ControlBar */}
+      {currentSong && <ControlBar currentSongData={currentSong} />}
     </div>
   );
 };

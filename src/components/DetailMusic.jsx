@@ -38,7 +38,7 @@ const DetailMusic = ({ results }) => {
           Lo mejor de {results[0].artist.name}
         </div>
         <div className="text-red-900 text-xs text-white font-normal">
-          {/* {data.artist.stats.listeners} seguidores */}
+          {results[0].artist.nb_fan} seguidores
         </div>
         <div className="w-full h-8 text-white text-xs font-normal leading-tight">
           {data?.artist?.bio?.summary || "Biografía no disponible"}

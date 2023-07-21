@@ -3,7 +3,6 @@ import Result from "./Result";
 import dataTracks from "../assets/json/dataTracks.json";
 import DetailMusic from "./DetailMusic";
 import useFetch from "./useFetch";
-// import ChartTracks from "./ChartTracks";
 import Loader from "./Loader";
 import ControlBar from "./ControlBar";
 import search from "../assets/icons/search.svg";
@@ -66,15 +65,13 @@ const SearchBar = () => {
         <h2>Ranking Top</h2>
         {loading ? (
           <Loader />
-          ) : (
-            <>
+        ) : (
+          <>
             {error && <div>Error: {error.message}</div>}
-            <Result results={data.data || dataTracks.tracks.data} handlePlaySong={handlePlaySong} />
-            {/* {query !== "" && data !== null ? (
-            <Result results={data.data || dataTracks.data} handlePlaySong={handlePlaySong} />
-            ) : (
-              <ChartTracks dataTracks={dataTracks.data} />
-            )} */}
+            <Result
+              results={data.data || dataTracks.tracks.data}
+              handlePlaySong={handlePlaySong}
+            />
           </>
         )}
       </div>

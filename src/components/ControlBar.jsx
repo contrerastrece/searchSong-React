@@ -53,29 +53,28 @@ const ControlBar = ({ currentSongData }) => {
     <div className="w-full h-24 fixed bottom-0 left-0 right-0 shadow shadow-inner bg-rose-500">
       <div className="w-14 h-14 left-[620px] top-[20px] absolute">
         <button
-          className="w-14 h-14 flex justify-center bg-red-400 rounded-full"
+          className="w-14 h-14 flex justify-center items-center bg-red-400 rounded-full"
           onClick={handlePlayPause}
         >
           <img
             src={isPlaying ? pause : play}
             alt="icon-pause"
-            className={`w-[18px] ${isPlaying ? "" : "hidden"}`}
-          />
-          <img
-            src={play}
-            alt="icon-play"
-            className={`w-[18px] ${isPlaying ? "hidden" : ""}`}
+            className='w-[18px]'
           />
         </button>
       </div>
+      
       <img
         className="w-24 h-24 left-0 top-0 absolute"
         src={currentSongData.album.cover_medium}
         alt={currentSongData.album.title}
+        loading="lazy"
       />
+
       <div className="left-[120px] top-[24px] absolute text-white text-sm font-bold">
         {currentSongData.title}
       </div>
+
       <div className="left-[120px] top-[50px] absolute text-white text-xs font-normal">
         {currentSongData.artist.name} - {currentSongData.album.title}
       </div>
@@ -91,7 +90,6 @@ const ControlBar = ({ currentSongData }) => {
           className="w-full h-5 left-0 top-0 absolute bg-white rounded-full border border-red-400 border-opacity-20"
         />
       </div>
-      <div className="left-[1250px] top-[32px] absolute text-white text-4xl font-black"></div>
       <div className="w-9 h-9 left-[700px] top-[32px] absolute">
         <button className="w-9 h-9 left-0 top-0 absolute ">
           <img src={next} alt="" />

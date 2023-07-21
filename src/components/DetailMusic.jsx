@@ -18,6 +18,8 @@ const DetailMusic = ({ results }) => {
   // console.log(loading);
   // console.log(error);
   // console.log(results);
+  console.log(results[0]);
+  console.log(data);
   return (
     <div className="w-full h-64 relative flex bg-contain bg-right"  style={{
       backgroundImage: `url(${results[0].artist.picture_big})`,
@@ -27,22 +29,25 @@ const DetailMusic = ({ results }) => {
         src={results[0].album.cover_big}
         alt=""
         className="object-contain w-75 h-64"
+        loading="lazy"
       />
-      <div className="backdrop-blur-[1px] bg-[#EB5757]/50 w-full ">
+      <div className="backdrop-blur-[1px] bg-[#EB5757]/50 w-full p-[2rem] ">
         
         <div className="text-white text-xl font-bold">
         {results[0].title_short} — {results[0].artist.name}
         </div>
 
-        <div className="text-white text-sm font-normal">
-          Lo mejor de {results[0].artist.name}
+        <div className="flex gap-[1rem] mb-[1rem] items-center">
+          <p className="text-white text-sm font-normal"> Lo mejor de {results[0].artist.name}</p>
+          <span className="text-xs text-[#662323] font-normal">
+          {data?.artist?.stats?.listeners || "321 123"} seguidores
+          </span>
         </div>
-        <div className="text-red-900 text-xs text-white font-normal">
-          {results[0].artist.nb_fan} seguidores
-        </div>
-        <div className="w-full h-8 text-white text-xs font-normal leading-tight">
+        
+
+        <p className="w-full h-8 text-white text-xs font-normal leading-tight">
           {data?.artist?.bio?.summary || "Biografía no disponible"}
-        </div>
+        </p>
 
        
       </div>

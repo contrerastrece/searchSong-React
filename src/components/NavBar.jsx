@@ -1,42 +1,48 @@
 const NavBar = () => {
   return (
-    <div className="w-80 relative bg-[#662323]">
-      <div className="w-80 fixed top-0 left-0 bg-blue-200">
-        <div className="left-[40px] top-[139px] absolute text-white text-xl font-bold">
-          Mi Librería
-        </div>
-        <div className="left-[40px] top-[171px] absolute text-red-400 text-base font-bold">
-          Recientes
-        </div>
-        <div className="left-[40px] top-[199px] absolute text-white text-base font-normal">
-          Artistas
-        </div>
-        <div className="left-[41px] top-[227px] absolute text-white text-base font-normal">
-          Álbums
-        </div>
-        <div className="left-[41px] top-[255px] absolute text-white text-base font-normal">
-          Canciones
-        </div>
-        <div className="left-[41px] top-[283px] absolute text-white text-base font-normal">
-          Estaciones
-        </div>
-        <div className="left-[40px] top-[333px] absolute text-white text-xl font-bold">
-          Playlist
-        </div>
-        <div className="left-[40px] top-[365px] absolute text-white text-base font-normal">
-          Metal
-        </div>
-        <div className="left-[40px] top-[393px] absolute text-white text-base font-normal">
-          Para bailar
-        </div>
-        <div className="left-[40px] top-[421px] absolute text-white text-base font-normal">
-          Rock 90s
-        </div>
-        <div className="left-[40px] top-[449px] absolute text-white text-base font-normal">
-          Baladas
-        </div>
-        <div className="w-1 h-5 left-0 top-[171px] absolute bg-red-400" />
-      </div>
+    <div className="w-0 lg:sticky lg:top-0 lg:h-screen bg-[#662323] lg:min-w-[300px] lg:p-[1rem]">
+        <ul>
+          <li className="text-white text-xl font-bold">
+            <a href="#">Mi Librería</a>
+          </li>
+          <li className="text-white text-base font-normal">
+            <a href="#">Recientes</a>
+          </li>
+          <li className="text-white text-base font-normal">
+            <a href="#">Artistas</a>
+          </li>
+          <li className="text-white text-base font-normal">
+            <a href="#">Albums</a>
+          </li>
+          <li className="text-white text-base font-normal">
+            <a href="#">Canciones</a>
+          </li>
+          <li className="text-white text-base font-normal">
+            <a href="#">Estaciones</a>
+          </li>
+        </ul>
+        <hr />
+        <br />
+        <ul>
+          <li className="text-white text-xl font-bold">
+            <a href="">Playlist</a>
+          </li>
+          <li className="text-white text-base font-normal">
+            <a href="">Metal</a>
+          </li>
+          <li className="text-white text-base font-normal">
+            <a href="">Para bailar</a>
+          </li>
+          <li className="text-white text-base font-normal">
+            <a href="">Rock 90s</a>
+          </li>
+          <li className="text-white text-base font-normal">
+            <a href="">Baladas</a>
+          </li>
+        </ul>
+
+        {/* <div className="w-1 h-5 left-0 top-[171px] absolute bg-red-400" /> */}
+    
     </div>
   );
 };

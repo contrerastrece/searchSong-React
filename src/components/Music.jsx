@@ -1,17 +1,18 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import pause from "../assets/icons/pause.svg";
 import play from "../assets/icons/play-solid.svg";
 import dots from "../assets/icons/dots.svg";
+import SongContext from "../context/SongContext";
 
-const Music = ({ data, handlePlaySong }) => {
+const Music = ({ data}) => {
   const [isPlaying, setIsPlaying] = useState(false); // Estado para controlar si la canción está en reproducción
 
-  // Función para manejar el clic en el componente Music
-  const handleMusicClick = () => {
-    setIsPlaying(!isPlaying);
-    handlePlaySong(data); // Llamamos a la función pasada por prop para controlar la reproducción de la canción
-  };
+  const {handlePlaySong}=useContext(SongContext)
 
+  const handleMusicClick = () => {
+    handlePlaySong(data); // Llamamos a la función pasada por prop para controlar la reproducción de la canción    
+  };
+  
   return (
     <div
       className="w-40 h-52 relative cursor-pointer"

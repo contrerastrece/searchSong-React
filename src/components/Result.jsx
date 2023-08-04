@@ -1,14 +1,17 @@
 import Music from "./Music";
 
-const Result = ({ results, handlePlaySong }) => {
+const Result = ({ dataSong}) => {
+// console.log(dataSong);
+
   return (
-    <div className="w-full">
+
+    <div className="min-w-[320px]">
+      <h2 className="text-[#E86060] my-[1rem] text-[22px] font-bold ">Resultado</h2>
       <div className="flex flex-wrap gap-[1rem] pb-[4rem]">
-        {results&&results.map((data) => (
+        {dataSong.map((data) => (
           <Music
             key={data.id}
-            data={data}
-            handlePlaySong={handlePlaySong} // Pasamos la función para controlar la reproducción de la canción
+            data={data}            
           />
         ))}
       </div>
